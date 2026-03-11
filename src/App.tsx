@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
-import { Heart, Music, Volume2, VolumeX, ChevronDown, Sparkles, Facebook } from 'lucide-react';
+import { Heart, Music, Volume2, VolumeX, ChevronDown, Sparkles, Facebook, Mail } from 'lucide-react';
 
 const chapters = [
   {
@@ -132,16 +132,17 @@ const FloatingHearts = () => {
   );
 };
 
-// Refined ParticleBackground for better visibility
+// Refined ParticleBackground with floating hearts
 const ParticleBackground = () => {
-  const particles = Array.from({ length: 30 });
+  const particles = Array.from({ length: 35 });
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-[45]">
       {particles.map((_, i) => {
-        const duration = 10 + Math.random() * 15;
+        const duration = 12 + Math.random() * 18;
         const delay = Math.random() * 10;
         const xPos = Math.random() * 100;
         const yPos = Math.random() * 100;
+        const isHeart = Math.random() > 0.7;
 
         return (
           <motion.div
@@ -150,13 +151,15 @@ const ParticleBackground = () => {
               left: xPos + "%", 
               top: yPos + "%", 
               opacity: 0,
-              scale: 0
+              scale: 0,
+              rotate: 0
             }}
             animate={{ 
-              opacity: [0, 0.9, 0],
-              scale: [0, 1.2, 0],
-              y: [0, -60, 0],
-              x: [0, Math.random() * 40 - 20, 0]
+              opacity: [0, 0.8, 0],
+              scale: [0, isHeart ? 1.5 : 1, 0],
+              y: [0, -100, 0],
+              x: [0, Math.random() * 60 - 30, 0],
+              rotate: [0, Math.random() * 360]
             }}
             transition={{ 
               duration: duration, 
@@ -164,10 +167,128 @@ const ParticleBackground = () => {
               delay: delay,
               ease: "easeInOut"
             }}
-            className="absolute w-2 h-2 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)] will-change-transform"
-          />
+            className="absolute flex items-center justify-center"
+          >
+            {isHeart ? (
+              <Heart className="text-pink-300/40 fill-pink-300/20 w-4 h-4" />
+            ) : (
+              <div className="w-2 h-2 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,1)]" />
+            )}
+          </motion.div>
         );
       })}
+    </div>
+  );
+};
+
+// Music Visualizer Component
+const MusicVisualizer = ({ isPlaying }: { isPlaying: boolean }) => {
+  return (
+    <div className="flex items-end gap-[2px] h-4">
+      {[1, 2, 3, 4].map((i) => (
+        <motion.div
+          key={i}
+          animate={isPlaying ? { height: [4, 16, 4] } : { height: 4 }}
+          transition={{
+            repeat: Infinity,
+            duration: 0.5 + Math.random() * 0.5,
+            ease: "easeInOut",
+          }}
+          className="w-[3px] bg-pink-400 rounded-full"
+        />
+      ))}
+    </div>
+  );
+};
+
+// Interactive Message in a Bottle
+const MessageInABottle = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const messages = [
+    "Em là điều tuyệt vời nhất từng đến với anh.",
+    "Mỗi ngày bên em đều là một món quà.",
+    "Anh yêu cách em cười, nó làm thế giới của anh bừng sáng.",
+    "Cảm ơn em vì đã luôn ở bên cạnh anh.",
+    "Hứa với anh là mình sẽ mãi như thế này nhé!"
+  ];
+  const [currentMsg, setCurrentMsg] = useState(messages[0]);
+
+  const openBottle = () => {
+    setCurrentMsg(messages[Math.floor(Math.random() * messages.length)]);
+    setIsOpen(true);
+  };
+
+  return (
+    <div className="fixed bottom-10 right-10 z-[60]">
+      <motion.button
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={openBottle}
+        className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
+      >
+        <Mail className="w-8 h-8" />
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="absolute bottom-20 right-0 w-64 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 text-center"
+          >
+            <p className="text-gray-700 italic mb-4">"{currentMsg}"</p>
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="text-sm font-bold text-pink-400 uppercase tracking-widest"
+            >
+              Đóng lại
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// Love Counter Component
+const LoveCounter = () => {
+  const startDate = new Date('2024-01-01T09:00:00'); // Khởi đầu từ 9h sáng ngày 1/1/2024
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      const diff = now.getTime() - startDate.getTime();
+      
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        mins: Math.floor((diff / 1000 / 60) % 60),
+        secs: Math.floor((diff / 1000) % 60)
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="flex gap-4 text-pink-500 font-medium">
+      <div className="flex flex-col items-center">
+        <span className="text-2xl font-bold">{timeLeft.days}</span>
+        <span className="text-[10px] uppercase tracking-widest opacity-60">Ngày</span>
+      </div>
+      <div className="flex flex-col items-center">
+        <span className="text-2xl font-bold">{timeLeft.hours}</span>
+        <span className="text-[10px] uppercase tracking-widest opacity-60">Giờ</span>
+      </div>
+      <div className="flex flex-col items-center">
+        <span className="text-2xl font-bold">{timeLeft.mins}</span>
+        <span className="text-[10px] uppercase tracking-widest opacity-60">Phút</span>
+      </div>
+      <div className="flex flex-col items-center">
+        <span className="text-2xl font-bold">{timeLeft.secs}</span>
+        <span className="text-[10px] uppercase tracking-widest opacity-60">Giây</span>
+      </div>
     </div>
   );
 };
@@ -218,6 +339,7 @@ export default function App() {
       />
 
       <AnimatePresence>
+        {hasStarted && <MessageInABottle />}
         {!hasStarted ? (
           <motion.div
             key="intro"
@@ -254,12 +376,15 @@ export default function App() {
             className="relative z-10"
           >
             {/* Music Toggle Button */}
-            <button
-              onClick={toggleMusic}
-              className="fixed top-6 right-6 z-50 p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
-            >
-              {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
-            </button>
+            <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
+              {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
+              <button
+                onClick={toggleMusic}
+                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
+              >
+                {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
+              </button>
+            </div>
 
             {/* Header */}
             <header className="h-screen flex flex-col items-center justify-center p-6 text-center relative">
@@ -267,6 +392,15 @@ export default function App() {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
+                className="mb-12"
+              >
+                <LoveCounter />
+              </motion.div>
+
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
               >
                 <h1 className="text-6xl md:text-8xl font-bold text-pink-600 mb-6 tracking-tight leading-tight">
                   Đôi lời gửi đến tình yêu của anh.
@@ -335,7 +469,7 @@ export default function App() {
                           whileInView={{ opacity: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.2 + pIndex * 0.1 }}
-                          className="text-xl md:text-2xl leading-relaxed text-gray-700 font-light"
+                          className="text-2xl md:text-3xl leading-relaxed text-gray-700 font-light"
                         >
                           {paragraph}
                         </motion.p>
