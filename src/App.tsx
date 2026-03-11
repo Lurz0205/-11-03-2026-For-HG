@@ -204,7 +204,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FFF5F5] text-[#4A4A4A] font-serif selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden relative">
       {/* Audio Element */}
-      <audio ref={audioRef} src="/music.mp3" loop />
+      <audio ref={audioRef} src="./music.mp3" loop />
 
       {/* Background Layers - Optimized */}
       <ShimmerBackground />
