@@ -1,0 +1,3 @@
+## 2026-10-16 - Icon Accessibility and Focus States
+**Learning:** Icon-only interactive elements in React frequently miss necessary screen-reader context. When adding these contexts, aria-label provides the auditory cue and title gives the visual tooltip. Additionally, custom styled buttons often strip out default browser focus rings; focus-visible classes must be reapplied manually to preserve keyboard navigability without degrading pointer UX.
+**Action:** Always pair aria-label with title on icon-only buttons, and explicitly add focus-visible ring utilities when building custom components with Tailwind.
