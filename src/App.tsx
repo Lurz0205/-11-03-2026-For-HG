@@ -224,9 +224,11 @@ const MessageInABottle = () => {
         whileHover={{ scale: 1.1, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
-        className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
+        aria-label="Mở thư nhắn gửi"
+        title="Mở thư nhắn gửi"
+        className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
       >
-        <Mail className="w-8 h-8" />
+        <Mail className="w-8 h-8" aria-hidden="true" />
       </motion.button>
 
       <AnimatePresence>
@@ -380,9 +382,11 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
-                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
               >
-                {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
+                {isMusicPlaying ? <Volume2 className="w-6 h-6" aria-hidden="true" /> : <VolumeX className="w-6 h-6" aria-hidden="true" />}
               </button>
             </div>
 
@@ -511,9 +515,11 @@ export default function App() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50"
+                      aria-label="Ghé thăm Facebook của anh"
+                      title="Ghé thăm Facebook của anh"
+                      className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
                     >
-                      <Facebook className="w-8 h-8" fill="currentColor" />
+                      <Facebook className="w-8 h-8" fill="currentColor" aria-hidden="true" />
                     </motion.a>
 
                     <div className="flex justify-center gap-6">
