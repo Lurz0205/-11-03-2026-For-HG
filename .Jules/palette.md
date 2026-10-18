@@ -1,0 +1,3 @@
+## 2024-03-01 - Icon-only buttons lacking accessibility attributes
+**Learning:** Highly visual/aesthetic applications using custom animated components (like `motion.button` and `motion.a` from `motion/react`) often overlook standard semantic HTML accessibility attributes like `aria-label` or `title` on interactive icon-only elements.
+**Action:** Always verify that interactive elements, especially those only containing icons (e.g., Mail, Volume, Facebook), include `aria-label` and `title` attributes so they are accessible to screen readers and provide hover tooltips to all users.
