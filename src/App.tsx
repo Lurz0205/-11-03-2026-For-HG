@@ -221,6 +221,8 @@ const MessageInABottle = () => {
   return (
     <div className="fixed bottom-10 right-10 z-[60]">
       <motion.button
+        aria-label="Mở thư tình yêu"
+        title="Mở thư tình yêu"
         whileHover={{ scale: 1.1, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
@@ -379,6 +381,8 @@ export default function App() {
             <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
                 onClick={toggleMusic}
                 className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
               >
@@ -506,6 +510,8 @@ export default function App() {
                   
                   <div className="flex flex-col items-center gap-10 pt-10">
                     <motion.a
+                      aria-label="Trang Facebook cá nhân"
+                      title="Trang Facebook cá nhân"
                       href="https://www.facebook.com/2thag5"
                       target="_blank"
                       rel="noopener noreferrer"
