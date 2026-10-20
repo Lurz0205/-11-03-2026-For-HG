@@ -380,7 +380,9 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
-                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400"
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
               </button>
