@@ -380,6 +380,8 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
                 className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
@@ -509,6 +511,8 @@ export default function App() {
                       href="https://www.facebook.com/2thag5"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Đến trang Facebook của anh"
+                      title="Đến trang Facebook của anh"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50"
