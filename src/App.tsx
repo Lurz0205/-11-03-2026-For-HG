@@ -224,6 +224,8 @@ const MessageInABottle = () => {
         whileHover={{ scale: 1.1, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
+        aria-label="Mở thư"
+        title="Mở thư"
         className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
       >
         <Mail className="w-8 h-8" />
@@ -380,6 +382,8 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
+                aria-label={isMusicPlaying ? "Tắt âm thanh" : "Bật âm thanh"}
+                title={isMusicPlaying ? "Tắt âm thanh" : "Bật âm thanh"}
                 className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
@@ -509,6 +513,8 @@ export default function App() {
                       href="https://www.facebook.com/2thag5"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Trang Facebook"
+                      title="Trang Facebook"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50"
