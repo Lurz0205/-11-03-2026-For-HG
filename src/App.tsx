@@ -224,6 +224,8 @@ const MessageInABottle = () => {
         whileHover={{ scale: 1.1, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
+        aria-label="Đọc tin nhắn"
+        title="Đọc tin nhắn"
         className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
       >
         <Mail className="w-8 h-8" />
@@ -380,6 +382,8 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
                 className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
