@@ -224,7 +224,9 @@ const MessageInABottle = () => {
         whileHover={{ scale: 1.1, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
-        className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
+        aria-label="Mở thư"
+        title="Mở thư"
+        className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500 focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:outline-none"
       >
         <Mail className="w-8 h-8" />
       </motion.button>
@@ -380,7 +382,9 @@ export default function App() {
               {isMusicPlaying && <MusicVisualizer isPlaying={isMusicPlaying} />}
               <button
                 onClick={toggleMusic}
-                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50 focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:outline-none"
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
               </button>
@@ -511,7 +515,9 @@ export default function App() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50"
+                      aria-label="Facebook"
+                      title="Facebook"
+                      className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50 focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:outline-none"
                     >
                       <Facebook className="w-8 h-8" fill="currentColor" />
                     </motion.a>
