@@ -225,6 +225,8 @@ const MessageInABottle = () => {
         whileTap={{ scale: 0.9 }}
         onClick={openBottle}
         className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-pink-100 text-pink-500"
+        aria-label="Mở thư nhắn gửi"
+        title="Mở thư nhắn gửi"
       >
         <Mail className="w-8 h-8" />
       </motion.button>
@@ -381,6 +383,8 @@ export default function App() {
               <button
                 onClick={toggleMusic}
                 className="p-4 bg-white/80 backdrop-blur-md rounded-full shadow-md text-pink-500 hover:scale-110 active:scale-90 border border-pink-50"
+                aria-label={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
+                title={isMusicPlaying ? "Tắt nhạc" : "Bật nhạc"}
               >
                 {isMusicPlaying ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
               </button>
@@ -512,6 +516,8 @@ export default function App() {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center justify-center p-5 bg-white rounded-full shadow-md text-blue-600 border border-blue-50"
+                      aria-label="Liên kết Facebook"
+                      title="Liên kết Facebook"
                     >
                       <Facebook className="w-8 h-8" fill="currentColor" />
                     </motion.a>
