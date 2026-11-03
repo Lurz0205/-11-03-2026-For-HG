@@ -1,0 +1,3 @@
+## 2025-02-28 - Missing labels on floating icon buttons
+**Learning:** In interactive applications with heavily styled floating action buttons (like a music toggle or a message bottle), developers often prioritize visual icons over textual descriptions. This leads to an accessibility gap where screen readers cannot interpret the button's action.
+**Action:** When adding or reviewing floating or decorative icon buttons, always check for the presence of `aria-label` and `title` attributes to ensure they are accessible. For stateful icons (e.g., a music player), make these labels dynamic to reflect the current state.
