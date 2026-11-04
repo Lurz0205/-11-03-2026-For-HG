@@ -1,0 +1,3 @@
+## 2024-03-24 - Accessibility improvements for icon-only buttons
+**Learning:** In this application, several interactive elements (like the mail bottle, music toggle, and social links) are icon-only without accessible names or focus visible styles, which hurts screen reader and keyboard navigation accessibility.
+**Action:** Always verify icon-only buttons/links have `aria-label`, `title`, and keyboard focus styling (`focus-visible:ring-2`) implemented using existing Tailwind classes.
